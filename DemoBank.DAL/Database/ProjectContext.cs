@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DemoBank.DAL.Database.DBModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace DemoBank.DAL.Database;
 
@@ -14,14 +15,14 @@ namespace DemoBank.DAL.Database;
 
         }
 
-        //public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<AccountOpening> AccountOpening { get; set; }
 
-        //public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Account>().ToTable("Accounts");
-            //modelBuilder.Entity<Client>().ToTable("Clients");
+            modelBuilder.Entity<AccountOpening>().ToTable("AccountOpening");
+            modelBuilder.Entity<Client>().ToTable("Clients");
         }
     }
 
