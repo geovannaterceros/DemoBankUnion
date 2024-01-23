@@ -1,13 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace DemoBank.DAL.Database.DBModels
+﻿
+namespace DemoBank.Models.Models
 {
-    public class AccountOpening
+    public class AccountOpeningCreateDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid AccountId { get; set; } = Guid.NewGuid();
 
         public string ProductType { get; set; }
 

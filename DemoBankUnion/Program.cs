@@ -1,5 +1,11 @@
+using DemoBank.BL.Interfaces;
+using DemoBank.BL.Resources;
 using DemoBank.DAL.Database;
+using DemoBank.DAL.Interfaces;
+using DemoBank.DAL.Resources;
+using DemoBank.Models.Models;
 using Microsoft.EntityFrameworkCore;
+using static DemoBank.BL.Resources.ClientService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +29,17 @@ builder.Services.AddSwaggerGen();
 //DatabaseConfiguration
 builder.Services.AddDbContext<ProjectContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("ProjectDB")));
+
+//Data Access
+builder.Services.AddScoped<IDataAccess<ClientDto>, ClientDataAccess>();
+builder.Services.AddScoped<IDataAccess<AccountOpeningDto>, AccountOpeningDataAccess>();
+
+//Bussiness Logic
+builder.Services.AddScoped<IServices<ClientDto>, ClientsService>();
+builder.Services.AddScoped<IServices<AccountOpeningDto>, AccountOpeningService>();
+
+// Automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
